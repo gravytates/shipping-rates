@@ -1,0 +1,26 @@
+.wrapper {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.title {
+  font-weight: bold;
+  border-bottom: 1px solid #c0c0c0;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
