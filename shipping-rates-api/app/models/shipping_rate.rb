@@ -5,12 +5,17 @@ class ShippingRate < ApplicationRecord
 
   def self.csv_import(file)
     shipping_rates = []
-    CSV.foreach(file.path, headers: true) do |row|
-
-      formatted_row = [["origin", "destination", "rate", "currency", "shipping_company_id"],
-                [row[1][2], row[1][3], row[1][0], row[1][1], row[1][4]]]
+    CSV.foreach(file, headers: true) do |row|
+      formatted_row = [
+                        ["origin", row["origin"]],
+                        ["destination", row["destination"]],
+                        ["rate", row["rate"]],
+                        ["currency", row["currency"]],
+                        ["shipping_company_id", row["shipping company id"]]
+                      ]
 
       shipping_rates << ShippingRate.new(formatted_row.to_h)
     end
     ShippingRate.import shipping_rates, recursive: true
+  end
 end
