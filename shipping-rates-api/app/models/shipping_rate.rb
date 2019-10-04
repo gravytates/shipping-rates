@@ -2,7 +2,7 @@ class ShippingRate < ApplicationRecord
   require 'csv'
   require 'activerecord-import/base'
   require 'activerecord-import/active_record/adapters/postgresql_adapter'
-  belongs_to :shipping_service_provider
+  belongs_to :shipping_company, class_name: "ShippingServiceProvider"
   before_save :convert_currency
   validates :origin, :destination, :rate, :currency, :shipping_company_id, presence: true
 
