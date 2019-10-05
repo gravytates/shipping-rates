@@ -5,7 +5,7 @@ function ProvidersIndex() {
     <div className="ProvidersIndex">
       <h2>Providers</h2>
       <ul>
-        <li class="title">
+        <li className="title">
           <div>Company Name</div>
           <div>Total</div>
         </li>
