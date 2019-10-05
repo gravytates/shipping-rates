@@ -65,7 +65,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <ProvidersIndex></ProvidersIndex>
+        <ProvidersIndex allRates={this.state.allRates}></ProvidersIndex>
       </div>
     );
   }

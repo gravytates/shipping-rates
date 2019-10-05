@@ -18,9 +18,17 @@ li {
   margin: 0 10px;
 }
 
+.data-div {
+  text-align: left;
+}
+
 .title {
   font-weight: bold;
   border-bottom: 1px solid #c0c0c0;
   margin-bottom: 10px;
   text-transform: uppercase;
+}
+
+.shipping-service-name {
+  width: 15%;
 }
