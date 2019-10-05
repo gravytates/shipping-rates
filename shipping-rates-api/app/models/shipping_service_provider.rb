@@ -3,8 +3,11 @@ class ShippingServiceProvider < ApplicationRecord
   require 'activerecord-import/base'
   require 'activerecord-import/active_record/adapters/postgresql_adapter'
   has_many :shipping_rates
-  before_save :convert_currency
   validates :name, :flat_rate, :currency, presence: true
+
+  before_validation { |service_provider| 
+    service_provider.common_rate = CurrencyConverter.convert_to_usd(service_provider.flat_rate, service_provider.currency) 
+  }
 
   def self.csv_import(file)
     shipping_service_providers = []
@@ -18,12 +21,5 @@ class ShippingServiceProvider < ApplicationRecord
       shipping_service_providers << ShippingServiceProvider.new(formatted_row.to_h)
     end
     ShippingServiceProvider.import shipping_service_providers, recursive: true
-  end
-
-  private
-  
-  def convert_currency
-    common_rate = CurrencyConverter.convert_to_usd(self.flat_rate, self.currency)
-    self.update_attribute(:common_rate, common_rate)
   end
 end
