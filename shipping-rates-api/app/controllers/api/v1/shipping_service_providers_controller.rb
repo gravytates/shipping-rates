@@ -1,8 +1,14 @@
 module Api::V1
-  class ShippingServiceProviderController < ApplicationController
+  class ShippingServiceProvidersController < ApplicationController
     def index
       @shipping_service_providers = ShippingServiceProvider.order(:id)
+      render json: @shipping_service_providers
     end
+
+    def show
+      render json: @shipping_service_providers
+    end
+
 
     def new
       @shipping_service_provider = ShippingServiceProvider.new

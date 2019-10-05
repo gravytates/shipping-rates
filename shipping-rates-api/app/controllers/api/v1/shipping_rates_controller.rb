@@ -1,7 +1,12 @@
 module Api::V1
-  class ShippingRateController < ApplicationController
+  class ShippingRatesController < ApplicationController
     def index
       @shipping_rates = ShippingRate.all
+      render json: @shipping_rates
+    end
+
+    def show
+      render json: @shipping_rate
     end
 
     def new
