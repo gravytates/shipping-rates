@@ -1,4 +1,3 @@
-require 'pry'
 class ShippingRate < ApplicationRecord
   require 'csv'
   require 'activerecord-import/base'
