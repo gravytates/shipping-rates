@@ -37,6 +37,7 @@ module Api::V1
     private
     
     def service_provider_params
+      # helps prevent direct update of the common_rate field
       params.require(:shipping_service_provider).permit(:name, :flat_rate, :currency)
     end
   end
