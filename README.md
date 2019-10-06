@@ -6,15 +6,16 @@
 - Rails 5.2.3
 - Ruby 2.4.1
 - npm 6.5.0
+- postgres
 
 ## Set up Backend
 #### Database
 - postgres db should be running in the background
+- Using Terminal, navigate to the top of the `shipping-rates-api` folder, which should be one level below the project root.
 - `>> bundle`
 - `>> bundle exec rails db:setup`
 #### Import Data
-To import provided csv data into activerecord and the postgres db:
-- Using Terminal navigate to the top of the `shipping-rates-api` folder, which should be one level below the project root.
+To import provided csv data into the db:
 - `>> rails console`
 - `>> ShippingServiceProvider.csv_import('app/service_provider_data.csv')`
 - `>> ShippingRate.csv_import('app/rate_data.csv')`
