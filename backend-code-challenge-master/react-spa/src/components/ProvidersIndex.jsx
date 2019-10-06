@@ -12,26 +12,18 @@ function ProvidersIndex(props) {
           <div className="data-div">Flat Rate (USD)</div>
           <div className="data-div">Origin</div>
           <div className="data-div">Destination</div>
-          <div className="data-div">Total</div>
-          <div className="data-div">Total (USD)</div>
+          <div className="data-div">Rate/Kilo</div>
+          <div className="data-div">Rate (USD)/Kilo</div>
         </li>
         {props.allRates.map(rate => (
           <li key={rate.id}>
             <div className="data-div shipping-service-name">{rate.name}</div>
-            {rate.provider_currency !== "USD" ?
-              <div className="data-div">{rate.provider_flat_rate} {rate.provider_currency}</div>
-            :
-              <div className="data-div">n/a</div>
-            }
-            <div className="data-div">${rate.provider_common_rate} USD</div>
+            <div className="data-div">{rate.provider_flat_rate.toFixed(2)} {rate.provider_currency}</div>
+            <div className="data-div common-rate-values">${rate.provider_common_rate.toFixed(2)} USD</div>
             <div className="data-div">{rate.origin}</div>
             <div className="data-div">{rate.destination}</div>
-            {rate.currency  !== "USD" ?
-              <div className="data-div">{rate.rate} {rate.currency}</div>
-            :
-              <div className="data-div">n/a</div>
-            }
-            <div className="data-div">${rate.common_rate} USD</div>
+            <div className="data-div">{rate.rate.toFixed(2)} {rate.currency}</div>
+            <div className="data-div common-rate-values">${rate.common_rate.toFixed(2)} USD</div>
           </li>
         ))}
       </ul>

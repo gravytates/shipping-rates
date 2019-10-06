@@ -35,3 +35,7 @@ li {
 .shipping-service-name {
   width: 19%;
 }
+
+.common-rate-values {
+  color: grey;
+}

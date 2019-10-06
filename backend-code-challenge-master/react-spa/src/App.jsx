@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-// import { passCsrfToken } from './util/helpers'
 import ProvidersIndex from './components/ProvidersIndex';
 
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // passCsrfToken(document, axios);
     axios.get('api/v1/shipping_rates')
       .then(response => {
         this.setState({
