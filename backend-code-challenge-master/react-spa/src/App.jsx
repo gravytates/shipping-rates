@@ -49,6 +49,9 @@ class App extends Component {
       let serviceProvider = scope.state.shippingServiceProviders.find(el => el.id === rate.shipping_company_id);
       let joinedRate = {
         name: serviceProvider.name,
+        provider_flat_rate: serviceProvider.flat_rate,
+        provider_currency: serviceProvider.currency,
+        provider_common_rate: serviceProvider.common_rate,
         origin: rate.origin,
         destination: rate.destination,
         rate: rate.rate,
