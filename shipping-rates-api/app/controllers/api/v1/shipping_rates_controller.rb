@@ -1,3 +1,4 @@
+require 'pry'
 module Api::V1
   class ShippingRatesController < ApplicationController
     def index
@@ -14,6 +15,7 @@ module Api::V1
     end
 
     def create
+      # binding.pry
       @shipping_rate = ShippingRate.create(shipping_rate_params)
 
       if @shipping_rate.save
