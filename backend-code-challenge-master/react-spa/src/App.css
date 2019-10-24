@@ -39,3 +39,12 @@ li {
 .common-rate-values {
   color: grey;
 }
+
+.form-inputs {
+  display: inline-block;
+}
+
+.form-inputs form {
+  text-align: left;
+}
+

@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormInputs = (props) => {
   return (
-    <div className="ProvidersIndex">
+    <div className="form-inputs">
       <h2>New Rate</h2>
       <form onSubmit={props.handleSubmit}>
         <div>
@@ -20,15 +20,16 @@ const FormInputs = (props) => {
         <div>
           <label>Currency</label>
           <select onChange={props.handleCurrencyChange} value={props.inputCurrency}>
-            <option selected value="USD">USD</option>
+            <option value="USD">USD</option>
             <option value="EUR">EUR</option>
           </select>
         </div>
         <div>
           <label>Shipping Company</label>
           <select onChange={props.handleShippingCoChange} value={props.inputShippingCo}>
-            <option selected value="GTR, Inc">GTR, Inc</option>
-            <option value="Emmert, Inc">Emmert, Inc</option>
+            {props.shippingCoList.map(shippingProvider => (
+              <option key={shippingProvider.id} value={shippingProvider.name}>{shippingProvider.name}</option>
+            ))}
           </select>
         </div>
         <input type="submit" value="Submit" />

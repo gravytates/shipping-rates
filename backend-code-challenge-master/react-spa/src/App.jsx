@@ -125,6 +125,7 @@ class App extends Component {
                   inputRate={this.state.inputRate}
                   inputCurrency={this.state.inputCurrency}
                   inputShippingCo={this.state.inputShippingCo}
+                  shippingCoList={this.state.shippingServiceProviders}
                   handleOriginChange={this.handleOriginChange}
                   handleDestinationChange={this.handleDestinationChange}
                   handleRateChange={this.handleRateChange}
