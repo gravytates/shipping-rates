@@ -19,12 +19,15 @@ const FormInputs = (props) => {
         </div>
         <div>
           <label>Currency</label>
-          <input type="text" value={props.inputCurrency} onChange={props.handleCurrencyChange} />
+          <select onChange={props.handleCurrencyChange} value={props.inputCurrency}>
+            <option selected value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
         </div>
         <div>
           <label>Shipping Company</label>
           <select onChange={props.handleShippingCoChange} value={props.inputShippingCo}>
-            <option value="GTR, Inc">GTR, Inc</option>
+            <option selected value="GTR, Inc">GTR, Inc</option>
             <option value="Emmert, Inc">Emmert, Inc</option>
           </select>
         </div>

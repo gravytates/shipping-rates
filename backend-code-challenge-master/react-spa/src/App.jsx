@@ -14,7 +14,7 @@ class App extends Component {
       inputOrigin: '',
       inputDestination: '',
       inputRate: 0,
-      inputCurrency: '',
+      inputCurrency: 'USD',
       inputShippingCo: ''
     }
 
@@ -43,7 +43,8 @@ class App extends Component {
     axios.get('api/v1/shipping_service_providers.json')
       .then(response => {
         this.setState({
-          shippingServiceProviders: response.data
+          shippingServiceProviders: response.data,
+          inputShippingCo: response.data[0].name
         })
       })
       .then(() =>{
@@ -99,15 +100,13 @@ class App extends Component {
     e.preventDefault();
     let scope = this;
     let shippingServiceProvider = scope.state.shippingServiceProviders.find(el => el.name === scope.state.inputShippingCo)
-    
+    console.log(shippingServiceProvider);
     let postData = { 
-      shipping_rate: { 
-        origin: scope.state.inputOrigin,
-        destination: scope.state.inputDestination,
-        rate: scope.state.inputRate,
-        currency: scope.state.inputCurrency,
-        shipping_company_id: shippingServiceProvider.id
-      } 
+      origin: scope.state.inputOrigin,
+      destination: scope.state.inputDestination,
+      rate: scope.state.inputRate,
+      currency: scope.state.inputCurrency,
+      shipping_company_id: shippingServiceProvider.id
     }
     
     axios({

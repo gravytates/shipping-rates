@@ -39,7 +39,8 @@ module Api::V1
 
     def shipping_rate_params
       # helps prevent direct update of the common_rate field
-      params.require(:shipping_rate).permit(:origin, :destination, :rate, :currency, :shipping_company_id)
+      # binding.pry
+      params.permit(:origin, :destination, :rate, :currency, :shipping_company_id)
     end
   end
 end
