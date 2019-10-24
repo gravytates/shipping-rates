@@ -20,6 +20,7 @@ class App extends Component {
 
     this.fetchServiceProviders = this.fetchServiceProviders.bind(this);
     this.joinRates = this.joinRates.bind(this);
+    this.joinRate = this.joinRate.bind(this);
     this.handleOriginChange = this.handleOriginChange.bind(this);
     this.handleDestinationChange = this.handleDestinationChange.bind(this);
     this.handleRateChange = this.handleRateChange.bind(this);
@@ -56,7 +57,7 @@ class App extends Component {
   joinRates() {
     let allRates = [];
     let scope = this;
-    this.state.shippingRates.forEach(function(rate) {
+    scope.state.shippingRates.forEach(function(rate) {
       let serviceProvider = scope.state.shippingServiceProviders.find(el => el.id === rate.shipping_company_id);
       let joinedRate = {
         name: serviceProvider.name,
@@ -71,9 +72,25 @@ class App extends Component {
       }
       allRates.push(joinedRate);
     })
-    this.setState({
-      allRates: allRates
-    });
+    scope.setState({ allRates: allRates });
+  }
+
+  joinRate(rate) {
+    let serviceProvider = this.state.shippingServiceProviders.find(el => el.id === rate.shipping_company_id);
+    let allRates = this.state.allRates;
+    let joinedRate = {
+      name: serviceProvider.name,
+      provider_flat_rate: serviceProvider.flat_rate,
+      provider_currency: serviceProvider.currency,
+      provider_common_rate: serviceProvider.common_rate,
+      origin: rate.origin,
+      destination: rate.destination,
+      rate: rate.rate,
+      currency: rate.currency,
+      common_rate: rate.common_rate
+    }
+    allRates.push(joinedRate);
+    this.setState({ allRates: allRates });
   }
 
   handleOriginChange(e) {
@@ -100,7 +117,6 @@ class App extends Component {
     e.preventDefault();
     let scope = this;
     let shippingServiceProvider = scope.state.shippingServiceProviders.find(el => el.name === scope.state.inputShippingCo)
-    console.log(shippingServiceProvider);
     let postData = { 
       origin: scope.state.inputOrigin,
       destination: scope.state.inputDestination,
@@ -113,6 +129,19 @@ class App extends Component {
       method: 'post',
       url: 'api/v1/shipping_rates',
       data: postData,
+    })
+    .then(function(response) {
+      let newRate = response.data.pop();
+      scope.joinRate(newRate);
+    })
+    .then(function() {
+      scope.setState({
+        inputOrigin: '',
+        inputDestination: '',
+        inputRate: 0,
+        inputCurrency: 'USD',
+        inputShippingCo: ''
+      });
     })
     .catch(error => console.log(error));
   }
